@@ -9,29 +9,22 @@ using System.Threading.Tasks;
 
 namespace Mission13.Controllers
 {
+    
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IBowlersRepository _repo {get; set;}
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBowlersRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var blah = _repo.Bowlers.ToList();
+            return View(blah);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        
     }
 }
