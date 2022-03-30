@@ -22,7 +22,7 @@ namespace Mission13.Controllers
 
         public IActionResult Index()
         {
-            var blah = _repo.Bowlers.Include(x => x.Team).ToList();
+            var blah = _repo.Bowlers.OrderBy(x => x.BowlerFirstName).Include(x => x.Team).ToList();
             return View(blah);
         }
         // when you get the form
@@ -37,8 +37,16 @@ namespace Mission13.Controllers
         [HttpPost]
         public IActionResult BowlerForm(Bowler blah)
         {
-            _repo.CreateBowler(blah);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _repo.CreateBowler(blah);
+                return RedirectToAction("Index");
+            }
+            else // if invalid
+            {
+                ViewBag.Teams = _repo.Teams.ToList();
+                return View(blah);
+            }
         }
         [HttpGet]
         public IActionResult Edit (int bowlerid)
@@ -53,9 +61,18 @@ namespace Mission13.Controllers
             _repo.SaveBowler(blah);
             return RedirectToAction("Index");
         }
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(int bowlerid)
         {
-            return View();
+            var form = _repo.Bowlers.Single(x => x.BowlerID == bowlerid);
+            return View(form);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Bowler b)
+        {
+            _repo.DeleteBowler(b);
+            return RedirectToAction("Index");
         }
     }
 }

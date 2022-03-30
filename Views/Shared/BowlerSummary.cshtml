@@ -13,6 +13,6 @@
             <li>Address: @Model.BowlerAddress @Model.BowlerCity, @Model.BowlerState @Model.BowlerZip</li>
             <li>Phone Number: @Model.BowlerPhoneNumber</li>
         </ul>
-        <a asp-controller="Home" asp-action="Edit" asp-route-bowlerid="@Model.BowlerID">Edit</a>
-        <a asp-controller="Home" asp-action="Delete">Delete</a>
+        <a asp-controller="Home" asp-action="Edit" asp-route-bowlerid="@Model.BowlerID" >Edit</a>
+        <a asp-controller="Home" asp-action="Delete" asp-route-bowlerid="@Model.BowlerID" >Delete</a>
     </div>
