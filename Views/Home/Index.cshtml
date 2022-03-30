@@ -3,12 +3,11 @@
 }
 
 @model List<Bowler>
+    <div>
+        <a asp-controller="Home" asp-action="BowlerForm">Add Bowler</a>
+    </div>
 
-<h1>Bowlers</h1>
-
-<ul>
     @foreach (var b in Model)
     {
-        <li>@b.BowlerFirstName @b.BowlerLastName</li>
+        <partial name="BowlerSummary" model="b" />
     }
-</ul>
