@@ -20,9 +20,12 @@ namespace Mission13.Controllers
             _repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string teamName)
         {
-            var blah = _repo.Bowlers.OrderBy(x => x.BowlerFirstName).Include(x => x.Team).ToList();
+            var blah = _repo.Bowlers
+                .Where(x => x.Team.TeamName == teamName || teamName == null)
+                .OrderBy(x => x.BowlerFirstName)
+                .ToList();
             return View(blah);
         }
         // when you get the form

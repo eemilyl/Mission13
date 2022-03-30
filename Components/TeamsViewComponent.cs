@@ -18,7 +18,6 @@ namespace Mission13.Components
 
         public IViewComponentResult Invoke()
         {
-            
             var teams = repo.Bowlers.Select(x => x.Team.TeamName).Distinct().OrderBy(x => x);
             return View(teams);
         }
