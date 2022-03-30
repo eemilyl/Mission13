@@ -22,10 +22,11 @@ namespace Mission13.Controllers
 
         public IActionResult Index(string teamName)
         {
+            // This is to display the team name when specific team is selected
+            ViewBag.name = RouteData?.Values["teamName"];
             var blah = _repo.Bowlers
                 .Where(x => x.Team.TeamName == teamName || teamName == null)
-                .OrderBy(x => x.BowlerFirstName)
-                .ToList();
+                .OrderBy(x => x.BowlerFirstName);
             return View(blah);
         }
         // when you get the form

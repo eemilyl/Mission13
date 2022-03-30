@@ -1,18 +1,18 @@
 ﻿
 @{
 }
-
+<!--This is the partial View, connected to Index-->
 @model Bowler
+<!--Goes through and displays all of the bowler contact info-->
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-light p-1">
+        <h4>@Model.BowlerFirstName @Model.BowlerMiddleInit @Model.BowlerLastName </h4>
 
-    <div class="card card-outline-primary m-1 p-1">
-        <div class="bg-light p-1">
-            <h4>@Model.BowlerFirstName @Model.BowlerMiddleInit @Model.BowlerLastName </h4>
-
-        </div>
-        <ul>
-            <li>Address: @Model.BowlerAddress @Model.BowlerCity, @Model.BowlerState @Model.BowlerZip</li>
-            <li>Phone Number: @Model.BowlerPhoneNumber</li>
-        </ul>
-        <a asp-controller="Home" asp-action="Edit" asp-route-bowlerid="@Model.BowlerID" >Edit</a>
-        <a asp-controller="Home" asp-action="Delete" asp-route-bowlerid="@Model.BowlerID" >Delete</a>
     </div>
+    <ul>
+        <li>Address: @Model.BowlerAddress @Model.BowlerCity, @Model.BowlerState @Model.BowlerZip</li>
+        <li>Phone Number: @Model.BowlerPhoneNumber</li>
+    </ul>
+    <a asp-controller="Home" asp-action="Edit" asp-route-bowlerid="@Model.BowlerID">Edit</a>
+    <a asp-controller="Home" asp-action="Delete" asp-route-bowlerid="@Model.BowlerID">Delete</a>
+</div>

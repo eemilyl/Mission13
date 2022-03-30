@@ -1,9 +1,14 @@
 ﻿@{
 }
-@model IEnumerable<string>
-<a asp-controller="Home" asp-action="Index">Home</a>
 
-@foreach (string t in Model)
-{
-    <a asp-controller="Home" asp-action="Index" asp-route-teamName="@t">@t</a>
-}
+@model IEnumerable<string>
+<!--Buttons for pick a team and list the members on that team-->
+<div class="d-grid gap-2">
+    <a asp-controller="Home" asp-action="Index" asp-route-teamName="" class="btn btn-outline-secondary">Home</a> <br />
+    <!--The Selected Type connects to the one in the TeamsViewComponent: allows for button to be highlighted-->
+    @foreach (string t in Model)
+    {
+        <a asp-controller="Home" asp-action="Index" asp-route-teamName="@t" class="btn @(ViewBag.SelectedType == t ? "btn-primary" : "btn-outline-secondary")">@t</a>
+        <br />
+    }
+</div>
